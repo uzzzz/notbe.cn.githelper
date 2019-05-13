@@ -24,7 +24,7 @@ public class GitTask {
 		c = "{% raw %} \n" + c + "\n{% endraw %}";
 		String content = "---\n" //
 				+ "layout: post\n" //
-				+ "title: " + title + "\n" //
+				+ "title: \"" + title + "\"\n" //
 				+ "---\n\n" //
 				+ c;
 		writeGitForNotBeCN(id, title, content, time);

@@ -26,7 +26,12 @@ public class GitHelperApplication implements CommandLineRunner {
 		} else {
 			for (String arg : args) {
 				log.warn("githelper crawl start : " + arg);
-				new SitemapParser(csdnCrawler::crawl).parseXml(arg);
+				try {
+					new SitemapParser(csdnCrawler::crawl).parseXml(arg);
+				} catch (Throwable e) {
+					log.error(e.getMessage(), e);
+					csdnCrawler.crawl(arg);
+				}
 				log.warn("githelper crawl end : " + arg);
 			}
 		}
