@@ -23,7 +23,6 @@ public class CsdnCrawler {
 	private GitTask gitTask;
 
 	public void crawl(String url) {
-		long id = System.currentTimeMillis();
 		try {
 			Document _doc = Jsoup.connect(url).get();
 			String time = _doc.select(".time").first().text().split("日")[0].replace("年", "-").replace("月", "-");
@@ -39,7 +38,13 @@ public class CsdnCrawler {
 			article.select("script, #btn-readmore, .article-copyright").remove();
 			String c = article.html();
 
-			gitTask.writeGit(id, title, c, time);
+			String source = _doc.outerHtml();
+			String username = Utils.substring(source, "var username = \"", "\";");
+			String id = Utils.substring(source, "var articleId = \"", "\";");
+			id = StringUtils.isEmpty(id) ? Utils.substring(source, "var fileName = \"", "\";") : id;
+			String filename = username + "_" + id;
+
+			gitTask.writeGit(filename, title, c, time);
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}

@@ -15,7 +15,7 @@ public class GitTask {
 
 	private static Logger log = LoggerFactory.getLogger(GitTask.class);
 
-	public void writeGit(long id, String title, String c, String time) {
+	public void writeGit(String filename, String title, String c, String time) {
 		try {
 			c = URLEncoder.encode(c, "UTF-8");
 			c = "{{ \"" + c + "\" | url_decode}}";
@@ -27,14 +27,16 @@ public class GitTask {
 				+ "title: \"" + title.replace("\\", "\\\\").replace("\"", "\\\"") + "\"\n" //
 				+ "---\n\n" //
 				+ c;
-		writeGitForNotBeCN(id, title, content, time);
+
+		writeGitForNotBeCN(filename, title, content, time);
 	}
 
-	private void writeGitForNotBeCN(long id, String title, String content, String time) {
+	private void writeGitForNotBeCN(String name, String title, String content, String time) {
 		try {
 			String path = "/web/github.io/notbe.cn/_posts/";
+//			String path = "C:\\uzblog\\_posts\\";
 			BufferedWriter writer = new BufferedWriter(
-					new OutputStreamWriter(new FileOutputStream(path + time + "-" + id + ".html", false), "UTF-8"));
+					new OutputStreamWriter(new FileOutputStream(path + time + "-" + name + ".html", false), "UTF-8"));
 			writer.write(content);
 			writer.close();
 		} catch (Exception e) {
