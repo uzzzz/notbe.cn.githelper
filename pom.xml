@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>git.helper</groupId>
-	<artifactId>git.helper</artifactId>
+	<groupId>notbe.cn.helper</groupId>
+	<artifactId>notbe.cn.helper</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>git.helper</name>
+	<name>notbe.cn.helper</name>
 	<url>http://maven.apache.org</url>
 
 	<parent>
